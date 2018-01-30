@@ -3,7 +3,6 @@ const bodyParser = require("body-parser");
 const { graphqlExpress, graphiqlExpress } = require("apollo-server-express");
 const { makeExecutableSchema } = require("graphql-tools");
 const axios = require("axios");
-
 const { find, filter } = require("lodash");
 
 // The GraphQL schema in string form

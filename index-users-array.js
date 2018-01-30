@@ -53,7 +53,7 @@ const resolvers = {
     users: company => filter(users, { companyId: company.id })
   },
   User: {
-    company: user => find(users, { id: user.companyId })
+    company: user => find(companies, { id: user.companyId })
   }
 };
 

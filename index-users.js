@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const { graphqlExpress, graphiqlExpress } = require("apollo-server-express");
 const { makeExecutableSchema } = require("graphql-tools");
 const axios = require("axios");
+const { find, filter } = require("lodash");
 
 // The GraphQL schema in string form
 const typeDefs = `
@@ -67,7 +68,7 @@ const resolvers = {
   Company: {
     users: company =>
       axios
-        .get(`http://localhost:3000/users/?companyId=${company.id}`)
+        .get(`http://localhost:4000/users/?companyId=${company.id}`)
         .then(response => {
           console.log("resolve Company, users");
           return response.data;
@@ -77,11 +78,10 @@ const resolvers = {
   User: {
     company: user =>
       axios
-        .get(`http://localhost:3000/companies?_embed=users`)
+        .get(`http://localhost:4000/companies?_embed=users`)
         .then(response => {
-          console.log("resolve User, company", response.data);
-          const companies = response.data;
-          return find(companies, { id: user.id });
+          console.log("resolve User, company");
+          return find(response.data, item => ['user.id', user.id]);
         })
         .catch(err => err.data)
   }
