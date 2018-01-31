@@ -2,7 +2,7 @@
 
 ## Referencias
 
-- [https://www.apollographql.com/docs/apollo-server/example.html]
+- https://www.apollographql.com/docs/apollo-server/example.html
 
 ## Uso
 
